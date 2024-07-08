@@ -4,17 +4,22 @@ import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Logo from "../assets/logo.png";
+import { motion } from "framer-motion";
 
 function Navbar() {
   return (
     <AppBar
       position="static"
       elevation={0}
+      component={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.5, duration: 1.5 }}
       sx={{
         backgroundColor: "transparent",
         height: 80,
-        px: { xs: 2, sm: 3 }, // Adjust padding-left and padding-right for different screen sizes
-        py: 1, // Adjust padding-top and padding-bottom
+        px: { xs: 2, sm: 3 },
+        py: 1,
       }}
     >
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
