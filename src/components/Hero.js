@@ -82,7 +82,7 @@ const arrowVariant = {
       delay: i * 0.3,
       duration: 0.8,
       ease: "easeOut",
-      type: "tween", // Ensure type is set to 'tween'
+      type: "tween",
     },
   }),
 };
@@ -112,7 +112,7 @@ const letterVariant = {
       delay: i * 0.09,
       duration: 1.5,
       ease: "easeOut",
-      type: "tween", // Ensure type is set to 'tween'
+      type: "tween",
     },
   }),
 };
@@ -126,7 +126,7 @@ const lineVariant = {
       delay: i * 0.2,
       duration: 1,
       ease: "easeOut",
-      type: "tween", // Ensure type is set to 'tween'
+      type: "tween",
     },
   }),
 };
@@ -165,7 +165,7 @@ const AnimatedText = ({ text, styles }) => {
 
 const AnimatedLines = ({ text }) => {
   return (
-    <Box sx={{ overflow: "hidden", marginTop: "20px" }}>
+    <Box sx={{ marginTop: "20px" }}>
       {text.split("|").map((line, index) => (
         <motion.p
           key={index}
@@ -174,8 +174,8 @@ const AnimatedLines = ({ text }) => {
           animate="visible"
           variants={lineVariant}
           style={{
-            width: "100%", // Adjust width as needed
-            fontSize: "16px", // Adjust font size as needed
+            width: "100%",
+            fontSize: "16px",
             fontWeight: 400,
             lineHeight: "0.4em",
             letterSpacing: "-0.005em",
