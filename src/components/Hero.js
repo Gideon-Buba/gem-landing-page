@@ -1,11 +1,10 @@
 import React from "react";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { motion } from "framer-motion";
 import gem from "../assets/gem.gif";
 import arrow from "../assets/arrow.png";
 
-// Define letterVariant globally
 const letterVariant = {
   hidden: { y: 100, opacity: 0 },
   visible: (i) => ({
@@ -62,12 +61,13 @@ const collectionTextStyles = {
 };
 
 const GemImage = styled(motion.img)(({ theme }) => ({
-  width: "860px",
-  height: "750px",
+  width: "700px",
+  height: "700px",
   position: "absolute",
-  top: "-200px",
-  left: "590px",
+  top: "-180px",
+  left: "700px",
   opacity: 0.5,
+  mixBlendMode: "multiply",
 }));
 
 const gemAnimation = {
@@ -84,13 +84,29 @@ const gemAnimation = {
 };
 
 const arrowVariant = {
-  hidden: { y: -50, opacity: 0 },
+  hidden: {
+    clipPath: "polygon(0% 0%, 0% 0%, 0% 0%, 0% 0%)",
+    opacity: 0,
+  },
   visible: (i) => ({
-    y: 0,
+    clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
     opacity: 1,
     transition: {
-      delay: i * 0.5,
-      duration: 0.5,
+      delay: i * 0.3,
+      duration: 0.8,
+      ease: "easeOut",
+    },
+  }),
+};
+
+const lineVariant = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.2,
+      duration: 1,
       ease: "easeOut",
     },
   }),
@@ -110,6 +126,37 @@ const AnimatedText = ({ text, styles }) => {
         >
           {char}
         </motion.span>
+      ))}
+    </Box>
+  );
+};
+
+const AnimatedLines = ({ text }) => {
+  return (
+    <Box sx={{ overflow: "hidden", marginTop: "20px" }}>
+      {text.split(". ").map((line, index) => (
+        <motion.p
+          key={index}
+          custom={index}
+          initial="hidden"
+          animate="visible"
+          variants={lineVariant}
+          style={{
+            width: "647px",
+            height: "22px",
+            padding: "0px 4px 0px 0px",
+            gap: "0px",
+            marginBottom: "16px",
+            fontFamily: "Helvetica Neue, sans-serif",
+            fontSize: "15px",
+            fontWeight: 400,
+            lineHeight: "1",
+            letterSpacing: "-0.005em",
+            textAlign: "left",
+          }}
+        >
+          {line}
+        </motion.p>
       ))}
     </Box>
   );
@@ -135,36 +182,24 @@ function Hero() {
           variants={gemAnimation}
         />
       </HeroContent>
-      <Typography
+      <Box
         sx={{
-          fontFamily: "Helvetica Neue, sans-serif",
-          fontSize: "16px",
-          fontWeight: 400,
-          lineHeight: "22.4px",
-          letterSpacing: "-0.005em",
-          textAlign: "left",
-          display: "inline-block",
+          position: "absolute",
+          top: "550px",
+          left: "50%",
+          transform: "translateX(-50%)",
         }}
-        component={motion.p}
-        variants={gemAnimation}
-        className="hero-text"
       >
-        DIGITAL MINDFULNESS RACE CONTRIBUTION LOSS MARKET SHOULD. LOW-HANGING
-        PROBLEM LOT LOW-HANGING MY READ KPIS. CONTRIBUTION LOSS FLESH
-        FUTURE-PROOF PIVOT CAN ME RESPONSIBLE. I SPACES ECO-SYSTEM TEAMS Q1. CAN
-        ABLE FLESH UNDERLYING BUT MEANINGFUL. BETTER FIXED OPEN BALLPARK EVERY
-        USERS SYNCHRONISE OFFLINE ALGORITHM. RELAXATION STAKEHOLDER LOSS
-        MINDFULNESS BACK-END BOARD MORE. CHEEP USABILITY BASED ENSURE OPTIONS
-        ROOM BOTH BASE FINISH. LUNCH DOWNLOADED TIMEPONT TURN LEAN. PUT MONEY
-        GIANT MOVING DONE MAKE CRACK INVITE. BASE MOVE MY BEST DOGPILE CAN
-        USABILITY ANOTHER. CHIME ABLE SOCIALIZE USERS DEFINE.
-      </Typography>
+        {/* <AnimatedLines text="DIGITAL MINDFULNESS RACE CONTRIBUTION LOSS MARKET SHOULD LOW-HANGING. PROBLEM LOT LOW-HANGING MY READ KPIS CONTRIBUTION LOSS FLESH FUTURE-PROOF. PIVOT CAN ME RESPONSIBLE I SPACES ECO-SYSTEM TEAMS Q1 CAN ABLE. FLESH UNDERLYING BUT MEANINGFUL BETTER FIXED OPEN BALLPARK EVERY USERS. SYNCHRONISE OFFLINE ALGORITHM RELAXATION STAKEHOLDER LOSS MINDFULNESS. BACK-END BOARD MORE CHEEP USABILITY BASED ENSURE OPTIONS ROOM BOTH. BASE FINISH LUNCH DOWNLOADED TIMEPONT TURN LEAN PUT MONEY GIANT. MOVING DONE MAKE CRACK INVITE BASE MOVE MY BEST DOGPILE CAN USABILITY. ANOTHER CHIME ABLE SOCIALIZE USERS DEFINE." /> */}
+      </Box>
       <Box
         sx={{
           display: "flex",
           width: "410px",
           height: "110px",
           gap: "40px",
+          marginTop: "150px",
+          justifyContent: "center",
         }}
         component={motion.div}
         initial="hidden"
