@@ -5,19 +5,6 @@ import { motion } from "framer-motion";
 import gem from "../assets/gem.gif";
 import arrow from "../assets/arrow.png";
 
-const letterVariant = {
-  hidden: { y: 100, opacity: 0 },
-  visible: (i) => ({
-    y: 0,
-    opacity: 1,
-    transition: {
-      delay: i * 0.09,
-      duration: 1.5,
-      ease: "easeOut",
-    },
-  }),
-};
-
 const HeroSection = styled(Box)(({ theme }) => ({
   backgroundColor: "#ffffff",
   padding: theme.spacing(4),
@@ -44,7 +31,7 @@ const textContainerStyles = {
 
 const textStyles = {
   fontSize: "150px",
-  fontWeight: 500,
+  fontWeight: 550,
   lineHeight: "0.8",
   fontFamily: "'Signika Negative', sans-serif",
   display: "inline-block",
@@ -95,6 +82,37 @@ const arrowVariant = {
       delay: i * 0.3,
       duration: 0.8,
       ease: "easeOut",
+      type: "tween", // Ensure type is set to 'tween'
+    },
+  }),
+};
+
+const sentenceVariant = {
+  hidden: {
+    opacity: 0,
+    translateY: "100%",
+  },
+  visible: {
+    opacity: 1,
+    translateY: "0%",
+    transition: {
+      duration: 1.5,
+      ease: "easeOut",
+      type: "tween", // Ensure type is set to 'tween'
+    },
+  },
+};
+
+const letterVariant = {
+  hidden: { y: 100, opacity: 0 },
+  visible: (i) => ({
+    y: 0,
+    opacity: 1,
+    transition: {
+      delay: i * 0.09,
+      duration: 1.5,
+      ease: "easeOut",
+      type: "tween", // Ensure type is set to 'tween'
     },
   }),
 };
@@ -108,11 +126,25 @@ const lineVariant = {
       delay: i * 0.2,
       duration: 1,
       ease: "easeOut",
+      type: "tween", // Ensure type is set to 'tween'
     },
   }),
 };
 
 const AnimatedText = ({ text, styles }) => {
+  if (text === "‘23 - ‘24 Collection") {
+    return (
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={sentenceVariant}
+        style={{ ...styles, overflow: "hidden" }}
+      >
+        {text}
+      </motion.div>
+    );
+  }
+
   return (
     <Box component="span" sx={{ display: "inline-block", overflow: "hidden" }}>
       {text.split("").map((char, index) => (
@@ -134,7 +166,7 @@ const AnimatedText = ({ text, styles }) => {
 const AnimatedLines = ({ text }) => {
   return (
     <Box sx={{ overflow: "hidden", marginTop: "20px" }}>
-      {text.split(". ").map((line, index) => (
+      {text.split("|").map((line, index) => (
         <motion.p
           key={index}
           custom={index}
@@ -142,20 +174,15 @@ const AnimatedLines = ({ text }) => {
           animate="visible"
           variants={lineVariant}
           style={{
-            width: "647px",
-            height: "22px",
-            padding: "0px 4px 0px 0px",
-            gap: "0px",
-            marginBottom: "16px",
-            fontFamily: "Helvetica Neue, sans-serif",
-            fontSize: "15px",
+            width: "100%", // Adjust width as needed
+            fontSize: "16px", // Adjust font size as needed
             fontWeight: 400,
-            lineHeight: "1",
+            lineHeight: "0.4em",
             letterSpacing: "-0.005em",
             textAlign: "left",
           }}
         >
-          {line}
+          {line.trim()}
         </motion.p>
       ))}
     </Box>
@@ -187,10 +214,20 @@ function Hero() {
           position: "absolute",
           top: "550px",
           left: "50%",
-          transform: "translateX(-50%)",
+          transform: "translateX(5%)",
         }}
       >
-        {/* <AnimatedLines text="DIGITAL MINDFULNESS RACE CONTRIBUTION LOSS MARKET SHOULD LOW-HANGING. PROBLEM LOT LOW-HANGING MY READ KPIS CONTRIBUTION LOSS FLESH FUTURE-PROOF. PIVOT CAN ME RESPONSIBLE I SPACES ECO-SYSTEM TEAMS Q1 CAN ABLE. FLESH UNDERLYING BUT MEANINGFUL BETTER FIXED OPEN BALLPARK EVERY USERS. SYNCHRONISE OFFLINE ALGORITHM RELAXATION STAKEHOLDER LOSS MINDFULNESS. BACK-END BOARD MORE CHEEP USABILITY BASED ENSURE OPTIONS ROOM BOTH. BASE FINISH LUNCH DOWNLOADED TIMEPONT TURN LEAN PUT MONEY GIANT. MOVING DONE MAKE CRACK INVITE BASE MOVE MY BEST DOGPILE CAN USABILITY. ANOTHER CHIME ABLE SOCIALIZE USERS DEFINE." /> */}
+        <AnimatedLines
+          text={`DIGITAL MINDFULNESS RACE CONTRIBUTION LOSS MARKET SHOULD. LOW-HANGING |
+              PROBLEM LOT LOW-HANGING MY READ KPIS. CONTRIBUTION LOSS FLESH FUTURE- |
+              PROOF PIVOT CAN ME RESPONSIBLE. I SPACES ECO-SYSTEM TEAMS Q1. CAN ABLE |
+              FLESH UNDERLYING BUT MEANINGFUL. BETTER FURED OPEN BALLPARK EVERY USERS |
+              SYNCHRONISE OFFLINE ALGORITHM. RELAXATION STAKEHOLDER LOSS MINDFULNESS |
+              BACK-END BOARD MORE. CREEP USABILTIY BASED ENSURE OPTIONS ROOM BOTH |
+              BASE FINISH. LUNCH DOWNLOADED TIMEPOINT TURN LEAN. PUT MONEY GIANT |
+              MOVING DONE MAKE CRACK INVITE. BASE MOVE MY BEST DOGPILE CAN USABILTIY |
+              ANOTHER. CHIME ABLE SOCIALIZE USERS DEFINE.`}
+        />
       </Box>
       <Box
         sx={{
