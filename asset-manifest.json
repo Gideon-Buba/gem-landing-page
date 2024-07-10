@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.e6c13ad2.css",
-    "main.js": "/static/js/main.7f6bc495.js",
-    "static/media/gem.gif": "/static/media/gem.0e606af8b6d18b4605cd.gif",
-    "index.html": "/index.html",
-    "main.e6c13ad2.css.map": "/static/css/main.e6c13ad2.css.map",
-    "main.7f6bc495.js.map": "/static/js/main.7f6bc495.js.map"
+    "main.css": "/gem-landing-page/static/css/main.e6c13ad2.css",
+    "main.js": "/gem-landing-page/static/js/main.ea7d19af.js",
+    "static/media/gem.gif": "/gem-landing-page/static/media/gem.0e606af8b6d18b4605cd.gif",
+    "index.html": "/gem-landing-page/index.html",
+    "main.e6c13ad2.css.map": "/gem-landing-page/static/css/main.e6c13ad2.css.map",
+    "main.ea7d19af.js.map": "/gem-landing-page/static/js/main.ea7d19af.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.7f6bc495.js"
+    "static/js/main.ea7d19af.js"
   ]
 }
